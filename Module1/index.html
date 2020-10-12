@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="LunchCheckApp">
+    <head>
+        <script src="js/angular.min.js"></script>
+        <script src="js/app.js"></script>
+        <link rel="stylesheet" href="css/main.css"/>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div ng-controller="LunchCheckController">
+            <input class="{{border}}" type="text" ng-model="name"/>
+            <span>
+                <button ng-click="checkTooMuch()">Check If Too Much</button>
+                This application does NOT consider an empty item, i.e, ", ," as an item towards the count.
+            </span>
+            <br />
+            Message:
+            <span class="{{textColor}}">{{message}}</span>
+        </div>
+
+    </body>
+</html>

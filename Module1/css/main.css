@@ -1,0 +1,15 @@
+.enjoy {
+    color: forestgreen;
+}
+
+.input-enjoy {
+    border-color: forestgreen;
+}
+
+.input-error {
+    border-color: red;
+}
+
+.error {
+    color: red;
+}
