@@ -13,7 +13,6 @@
         $scope.searchTerm = "";
         c.found = [];
         c.show = false;
-        console.log("here " +c.found);
         
         c.search = function() {
             c.show = true;
@@ -24,16 +23,14 @@
             promise.then((result) => {
                 var matchingItems = [];
                 var foundItems = result.data.menu_items;
-                //console.table(foundItems)
                 for (var i in foundItems) {
                     var item = foundItems[i];
-                    if (item.description.indexOf($scope.searchTerm) > -1) {
-                        matchingItems.push(item)
+                    if (item.description.match(new RegExp($scope.searchTerm, "i"))) {
+                        matchingItems.push(item);
                     }
                 }
             
                 // return processed items
-                //console.table(matchingItems);
                 c.found = matchingItems;
             })
             .catch((error) => {
@@ -42,9 +39,7 @@
         };
 
         c.removeItem = function(index) {
-            console.log(c.found);
             c.found.splice(index,1);
-            console.log(c.found.length);
         };
 
     }
