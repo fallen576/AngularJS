@@ -54,7 +54,14 @@
 
     function foundItems() {
         var ddo = {
-            templateUrl: 'loader/itemsloaderindicator.template.html'
+            templateUrl: 'loader/itemsloaderindicator.template.html',
+            scope: {
+                items: '<',
+                onRemove: '&'
+            },
+            controller: NarrowItDownController,
+            controllerAs: 'c',
+            bindToController: true
         };
         return ddo;
     }
