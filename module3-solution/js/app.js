@@ -56,8 +56,8 @@
         var ddo = {
             templateUrl: 'loader/itemsloaderindicator.template.html',
             scope: {
-                items: '<',
-                onRemove: '&'
+                //items: '<',
+               // onRemove: '&'
             },
             controller: NarrowItDownController,
             controllerAs: 'c',
