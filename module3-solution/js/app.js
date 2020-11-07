@@ -12,16 +12,19 @@
         var c = this;
         $scope.searchTerm = "";
         c.found = [];
+        c.show = false;
+        console.log("here " +c.found);
         
         c.search = function() {
-           // if ($scope.searchTerm === "") return [];
+            c.show = true;
+            if ($scope.searchTerm === "") return [];
 
             var promise = MenuSearchService.getMatchedMenuItems();
 
             promise.then((result) => {
                 var matchingItems = [];
                 var foundItems = result.data.menu_items;
-                console.table(foundItems)
+                //console.table(foundItems)
                 for (var i in foundItems) {
                     var item = foundItems[i];
                     if (item.description.indexOf($scope.searchTerm) > -1) {
@@ -30,12 +33,18 @@
                 }
             
                 // return processed items
-                console.table(matchingItems);
+                //console.table(matchingItems);
                 c.found = matchingItems;
             })
             .catch((error) => {
                 console.log("Error when raching endpoint " + JSON.stringify(result));
             });
+        };
+
+        c.removeItem = function(index) {
+            console.log(c.found);
+            c.found.splice(index,1);
+            console.log(c.found.length);
         };
 
     }
@@ -56,8 +65,9 @@
         var ddo = {
             templateUrl: 'loader/itemsloaderindicator.template.html',
             scope: {
-                //items: '<',
-               // onRemove: '&'
+                show: '<',
+                items: '<',
+                onRemove: '&onRemove'
             },
             controller: NarrowItDownController,
             controllerAs: 'c',

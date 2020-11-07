@@ -1,17 +1,20 @@
 <div class="row">
-    <table class="styled-table" ng-if="c.found.length > 0">
+    <h3 ng-if="c.items.length === 0 && c.show">Nothing Found</h3>
+    <table class="styled-table" ng-if="c.items.length > 0">
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Short Name</th>
-                <th>description</th>
+                <th>Description</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in c.found">
+            <tr ng-repeat="item in c.items">
                 <td>{{::item.name}}</td>
                 <td>{{::item.short_name}}</td>
                 <td>{{::item.description}}</td>
+                <td><button type="button" class="btn btn-danger" ng-click="c.onRemove({index: $index})">Don't want this one!</button></td>
             </tr>
         </tbody>
     </table>
