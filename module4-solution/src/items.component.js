@@ -5,7 +5,7 @@
         .component('itemList', {
             templateUrl: 'templates/itemlist.template.html',
             bindings: {
-                menuItems: '<'
+                items: '<'
               }
         });
 

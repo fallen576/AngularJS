@@ -27,7 +27,7 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     controller: 'DataCategoriesController as mainList',
   })
   
-  .state('categories.items', {
+  .state('categories.itemDetail', {
     url: '/items',
     templateUrl: 'templates/items.template.html',
     controller: 'ItemController as itemDetail',
