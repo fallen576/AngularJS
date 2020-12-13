@@ -1,0 +1,69 @@
+<!--
+  Include stylesheet specific to the public site
+-->
+<link rel="stylesheet" href="css/public.css">
+<div class="container">
+    <form name="regform" novalidate>
+        <div class="form-group">
+            <label for="fname">First name</label>
+            <input type="text" class="form-control" id="fname" name="fname" placeholder="First name" 
+            ng-model="signup.user.fname"
+            required
+            ng-readonly="signup.success">
+            <span ng-if="(regform.fname.$error.required && regform.fname.$touched)">
+                First name cannot be empty
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="lname">Last name</label>
+            <input type="text" class="form-control" id="lname" name="lname" placeholder="Last name"
+            ng-model="signup.user.lname"
+            required
+            ng-readonly="signup.success">
+            <span ng-if="(regform.lname.$error.required && regform.lname.$touched)">
+                Last name cannot be empty
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"
+            ng-model="signup.user.email"
+            required
+            ng-readonly="signup.success">
+            <span ng-if="(regform.email.$invalid && regform.email.$touched)">
+                Must be a valid email address: handle@domain format
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone number</label>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="###-###-####"
+            ng-model="signup.user.phone"
+            pattern="(\d{3})-(\d{3})-(\d{4})"
+            ng-readonly="signup.success">
+            <span ng-if="(regform.phone.$invalid && regform.phone.$touched)">
+                Phone must be in the format ###-###-####
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="Menu">Menu number</label>
+            <input type="text" class="form-control" id="Menu" name="menuItem" placeholder="Menu number (mine is C10)"
+            ng-model="signup.user.menuItem"
+            required
+            ng-change="signup.validateShortName(signup.user.menuItem);"
+            ng-readonly="signup.success">
+            <span ng-if="(regform.menuItem.$error.required && regform.menuItem.$touched)">
+                Favortie menu item cannot be empty
+            </span>
+            <span ng-if="signup.menuItemValidated == true">
+                Valid menu number
+            </span>
+            <span ng-if="signup.menuItemValidated == false && signup.user.menuItem != ''">
+                No such menu number exists
+            </span>
+        </div>   
+        <button ng-disabled="regform.$invalid || !signup.menuItemValidated || signup.success" type="submit" class="btn btn-lg btn-warning" ng-click="signup.submit()">Submit</button>
+    </form>
+    <h3 ng-if="signup.success">
+        Form Successfully Submitted. Thank you for registering, {{::signup.user.fname}}!
+    </h3>
+</div>

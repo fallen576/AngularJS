@@ -1,0 +1,36 @@
+<!--
+  Include stylesheet specific to the public site
+-->
+<link rel="stylesheet" href="css/public.css">
+<div class="container">
+
+    <h3 ng-if="!signup.success">
+        Please Sign Up First.
+        <a ui-sref="public.signUp">Click here to register</a>
+    </h3>
+    <table class="styled-table" ng-if="signup.success">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email Address</th>
+                <th>Phone Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{signup.user.fname}}</td>
+                <td>{{signup.user.lname}}</td>
+                <td>{{signup.user.email}}</td>
+                <td>{{signup.user.phone}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <span ng-if="signup.success">
+        <h3>Your favorite menu item:</h3>
+        <img src="https://bgianni2-course5.herokuapp.com/images/{{signup.user.menuItem | uppercase}}.jpg" alt="Sorry about that. No image is available">
+        <br />
+        <p>{{::signup.menuItem.name}} - {{::signup.menuItem.description}}</p>
+
+    </span>
+</div>
